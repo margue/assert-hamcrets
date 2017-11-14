@@ -1,4 +1,4 @@
-package de.holisticon.mgu.assertjHamcrest;
+package de.holisticon.mgu.assertjhamcrest;
 
 import lombok.Builder;
 import lombok.Value;
