@@ -8,7 +8,11 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 
+import static my.customassertions.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.catchThrowable;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -22,7 +26,7 @@ public class SampleObjectTest {
 
         // Then
         assertThat(nullObject, nullValue());
-        Assertions.assertThat(nullObject).isNull();
+        assertThat(nullObject).isNull();
     }
 
     @Test
@@ -33,7 +37,7 @@ public class SampleObjectTest {
 
         // Then
         assertThat(sampleObject, equalTo(sampleObject));
-        Assertions.assertThat(sampleObject).isEqualTo(sampleObject);
+        assertThat(sampleObject).isEqualTo(sampleObject);
     }
 
     @Test
@@ -47,7 +51,7 @@ public class SampleObjectTest {
         List<SampleObject> listOfSampleObjects = Arrays.asList(aSampleObject);
 
         // Then
-        Assertions.assertThat(listOfSampleObjects)
+        assertThat(listOfSampleObjects)
                 .contains(aSampleObject)
                 .doesNotContain(anotherSampleObject);
         assertThat(listOfSampleObjects, allOf(hasItem(aSampleObject)));
@@ -64,7 +68,7 @@ public class SampleObjectTest {
         List<SampleObject> listOfSampleObjects = Arrays.asList(aSampleObject, anotherSampleObject);
 
         // Then
-        Assertions.assertThat(listOfSampleObjects)
+        assertThat(listOfSampleObjects)
                 .filteredOn(sampleObject -> sampleObject.getName().contains("aSample"))
                 .as("Check set of objects in list that match the filter")
                 .containsOnly(aSampleObject);
@@ -81,7 +85,7 @@ public class SampleObjectTest {
         List<SampleObject> listOfSampleObjects = Arrays.asList(aSampleObject, anotherSampleObject);
 
         // Then
-        Assertions.assertThat(listOfSampleObjects)
+        assertThat(listOfSampleObjects)
                 .extracting(sampleObject -> sampleObject.getName()).as("Check names of objects in list")
                 .containsOnly("aSampleObject", "anotherSampleObject");
     }
@@ -107,7 +111,7 @@ public class SampleObjectTest {
 
         // When
         // Then
-        Assertions.assertThatThrownBy(() -> { throw new Exception("Boom!"); })
+        assertThatThrownBy(() -> { throw new Exception("Boom!"); })
                 .isInstanceOf(Exception.class)
                 .hasMessageContaining("Boom");
     }
@@ -118,7 +122,7 @@ public class SampleObjectTest {
 
         // When
         // Then
-        Assertions.assertThatExceptionOfType(Exception.class).isThrownBy(() -> {throw new Exception("Boom!"); })
+        assertThatExceptionOfType(Exception.class).isThrownBy(() -> {throw new Exception("Boom!"); })
                 .withMessageContaining("Boom");
     }
 
@@ -130,7 +134,7 @@ public class SampleObjectTest {
         Throwable thrown = catchThrowable(() -> { throw new Exception("Boom!"); } );
 
         // Then
-        Assertions.assertThat(thrown).isInstanceOf(Exception.class)
+        assertThat(thrown).isInstanceOf(Exception.class)
             .hasMessageContaining("Boom");
     }
 
@@ -141,7 +145,7 @@ public class SampleObjectTest {
         SampleObject aSampleObject = SampleObject.builder().name("aSampleObject").age(3).build();
 
         // Then
-        my.customassertions.Assertions.assertThat(aSampleObject)
+        assertThat(aSampleObject)
                 .hasName("aSampleObject")
                 .hasAge(3);
     }
