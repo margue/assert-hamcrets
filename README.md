@@ -1,4 +1,4 @@
-#Purpose
+# Purpose
 
 This is a small project to show differences between AssertJ and Hamcrest.
 
