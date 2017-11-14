@@ -7,6 +7,6 @@ import lombok.Value;
 @Builder
 public class SampleObject {
 
-    private String aStringProperty;
-    private int anIntProperty;
+    private String name;
+    private int age;
 }
