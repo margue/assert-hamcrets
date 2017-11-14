@@ -149,4 +149,17 @@ public class SampleObjectTest {
                 .hasName("aSampleObject")
                 .hasAge(3);
     }
+
+    @Test
+    public void comparingFieldByFieldAssertion() {
+        // Given
+        // When
+        SampleObject aSampleObject = SampleObject.builder().name("aSampleObject").age(3).build();
+        SampleObject aClonedSampleObject = SampleObject.builder().name("aSampleObject").age(3).build();
+
+        // Then
+        // fails if:
+        // assertThat(aSampleObject).isEqualTo(aClonedSampleObject);
+        assertThat(aSampleObject).isEqualToComparingFieldByField(aClonedSampleObject);
+    }
 }

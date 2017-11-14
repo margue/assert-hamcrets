@@ -1,10 +1,13 @@
 package de.holisticon.mgu.assertjhamcrest;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.Value;
 
-@Value
 @Builder
+@Getter
+@AllArgsConstructor
 public class SampleObject {
 
     private String name;
