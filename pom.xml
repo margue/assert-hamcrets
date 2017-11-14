@@ -1,0 +1,112 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>mgu.holisticon.de</groupId>
+	<artifactId>assertj-hamcrest</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<description>Comparison of AssertJ and Hamcrest</description>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.assertj</groupId>
+				<artifactId>assertj-assertions-generator-maven-plugin</artifactId>
+				<version>2.0.0</version>
+
+				<!-- generate assertions at every build -->
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate-assertions</goal>
+						</goals>
+					</execution>
+				</executions>
+
+				<configuration>
+
+					<!-- list the package whose classes you want to generate assertions 
+						for 
+					<packages>
+						<param>org.assertj.examples.rpg</param>
+						<param>org.assertj.examples.data</param>
+						<param>com.google.common.net</param>
+					</packages>
+						-->
+
+					<!-- list the classes you want to generate assertions for -->
+					<classes>
+						<param>org.apache.logging.log4j.core.LogEvent</param>
+					</classes>
+
+					<!-- wether generated assertions classes can be inherited with consistent 
+						assertion chaining -->
+					<hierarchical>true</hierarchical>
+
+					<!-- where to generate assertions entry point classes -->
+					<entryPointClassPackage>org.assertj</entryPointClassPackage>
+
+					<!-- restrict classes to generate assertions for with regex
+					<includes>
+						<param>org\.assertj\.examples\.rpg.*</param>
+					</includes>
+					 -->
+
+					<!-- excludes with regex classes from generation
+					<excludes>
+						<param>.*google.*HostSpecifier</param>
+						<param>.*google.*Headers</param>
+						<param>.*google.*MediaType</param>
+						<param>.*google.*Escaper.*</param>
+						<param>.*Examples.*</param>
+					</excludes>
+					 -->
+
+					<!-- base directory where to generate assertions -->
+					<targetDir>src/test/generated-assertions</targetDir>
+
+					<!-- select which assertions entry point classes to generate -->
+					<generateAssertions>true</generateAssertions>
+					<generateBddAssertions>true</generateBddAssertions>
+					<generateSoftAssertions>true</generateSoftAssertions>
+					<generateJUnitSoftAssertions>true</generateJUnitSoftAssertions>
+
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<properties>
+		<junit-version>4.12</junit-version>
+		<assertj-version>3.7.0</assertj-version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>${assertj-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.16.18</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+</project>
