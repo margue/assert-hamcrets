@@ -12,4 +12,5 @@ public class SampleObject {
 
     private String name;
     private int age;
+    private boolean important;
 }

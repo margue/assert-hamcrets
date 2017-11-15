@@ -3,6 +3,7 @@ package de.holisticon.mgu.assertjhamcrest;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.api.SoftAssertions;
 
+import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -41,6 +42,19 @@ public class SampleObjectTest {
     }
 
     @Test
+    public void booleanAssertion(){
+        // Given
+        // When
+        SampleObject sampleObject = SampleObject.builder().name("aSampleObject").important(true).build();
+
+        // Then
+        assertThat(sampleObject.isImportant(), is(true));
+        assertThat(sampleObject.isImportant())
+                .as("Check that %s is important", sampleObject.getName())
+                .isTrue();
+    }
+
+    @Test
     public void listAssertion_contain(){
         // Given
         SampleObject aSampleObject = SampleObject.builder().name("aSampleObject").age(3).build();
@@ -54,7 +68,9 @@ public class SampleObjectTest {
         assertThat(listOfSampleObjects)
                 .contains(aSampleObject)
                 .doesNotContain(anotherSampleObject);
-        assertThat(listOfSampleObjects, allOf(hasItem(aSampleObject)));
+        assertThat(listOfSampleObjects, allOf(
+                hasItem(aSampleObject),
+                not(hasItem(anotherSampleObject))));
     }
 
     @Test
