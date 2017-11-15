@@ -13,4 +13,9 @@ public class SampleObject {
     private String name;
     private int age;
     private boolean important;
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

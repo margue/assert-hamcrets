@@ -76,8 +76,8 @@ public class SampleObjectTest {
     @Test
     public void listAssertion_filteredOn(){
         // Given
-        SampleObject aSampleObject = SampleObject.builder().name("aSampleObject").age(3).build();
-        SampleObject anotherSampleObject = SampleObject.builder().name("anotherSampleObject").age(4)
+        SampleObject aSampleObject = SampleObject.builder().name("aSampleObject").important(true).age(3).build();
+        SampleObject anotherSampleObject = SampleObject.builder().name("anotherSampleObject").important(false).age(4)
                 .build();
 
         // When
@@ -85,8 +85,8 @@ public class SampleObjectTest {
 
         // Then
         assertThat(listOfSampleObjects)
-                .filteredOn(sampleObject -> sampleObject.getName().contains("aSample"))
-                .as("Check set of objects in list that match the filter")
+                .filteredOn(sampleObject -> sampleObject.isImportant())
+                .as("Check objects in list that are important")
                 .containsOnly(aSampleObject);
     }
 
